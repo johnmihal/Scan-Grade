@@ -19,6 +19,7 @@ def imgcrop(input, xPieces, yPieces):
 
 def main():
     print("hello")
+    print(os.getcwd())
     imgcrop("Images/gridTest1.png",4,8)
 
 if __name__ == "__main__":
