@@ -2,7 +2,7 @@ from PIL import Image
 import os
 
 def imgcrop(input, xPieces, yPieces):
-    filename, file_extension = os.path.splitext(input)
+    filename, file_extension = os.path.splitext(input[input.find('/'):])
     im = Image.open(input)
     imgwidth, imgheight = im.size
     height = imgheight // yPieces
@@ -12,9 +12,9 @@ def imgcrop(input, xPieces, yPieces):
             box = (j * width, i * height, (j + 1) * width, (i + 1) * height)
             a = im.crop(box)
             try:
-                a.save("Images/" + filename + "-" + str(i) + "-" + str(j) + file_extension)
-            except:
-                print("fail")
+                a.save("Images/Split/" + filename + "-" + str(i) + "-" + str(j) + file_extension)
+            except Exception as err:
+                print(err)
                 pass
 
 def main():
