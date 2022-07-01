@@ -1,23 +1,25 @@
 from PIL import Image
-def chop():
-    infile = 'grid test 1.png'
-    chopsize = 100
+import os
 
-    img = Image.open(infile)
-    width, height = img.size
-
-    # Save Chops of original image
-    for x0 in range(0, width, chopsize):
-        for y0 in range(0, height, chopsize):
-            box = (x0, y0,
-                x0+chopsize if x0+chopsize <  width else  width - 1,
-                y0+chopsize if y0+chopsize < height else height - 1)
-        print('%s %s' % (infile, box))
-        img.crop(box).save('zchop.%s.x%03d.y%03d.jpg' % (infile.replace('.jpg',''), x0, y0))
+def imgcrop(input, xPieces, yPieces):
+    filename, file_extension = os.path.splitext(input)
+    im = Image.open(input)
+    imgwidth, imgheight = im.size
+    height = imgheight // yPieces
+    width = imgwidth // xPieces
+    for i in range(0, yPieces):
+        for j in range(0, xPieces):
+            box = (j * width, i * height, (j + 1) * width, (i + 1) * height)
+            a = im.crop(box)
+            try:
+                a.save("Images/" + filename + "-" + str(i) + "-" + str(j) + file_extension)
+            except:
+                print("fail")
+                pass
 
 def main():
     print("hello")
-    chop()
+    imgcrop("Images/gridTest1.png",4,8)
 
 if __name__ == "__main__":
     main()
