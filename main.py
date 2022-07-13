@@ -1,5 +1,12 @@
 from PIL import Image, ImageStat
 import os
+from kivy.app import App
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.label import Label
+from kivy.uix.image import Image
+from kivy.uix.button import Button
+from kivy.uix.textinput import TextInput
+
 
 # crops answer bullets
 def imgcrop(input, xPieces, yPieces):
@@ -76,6 +83,9 @@ def main():
     print(input)
     grade(key, input, col, row)
 
+class ScanGrade(App):
+    def build(self):
+        return self.window
 
 if __name__ == "__main__":
     main()
