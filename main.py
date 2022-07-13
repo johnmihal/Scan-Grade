@@ -1,4 +1,4 @@
-from PIL import Image, ImageStat
+import PIL
 import os
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
@@ -11,7 +11,7 @@ from kivy.uix.textinput import TextInput
 # crops answer bullets
 def imgcrop(input, xPieces, yPieces):
     filename, file_extension = os.path.splitext(input[input.find('/'):])
-    im = Image.open(input)
+    im = PIL.Image.open(input)
     imgwidth, imgheight = im.size
     height = imgheight // yPieces
     width = imgwidth // xPieces
@@ -40,7 +40,7 @@ def imgcrop(input, xPieces, yPieces):
 #   Returns Greyscale Brightness 255 = white, 0 = black
 def brightness(a):
    im = a.convert('L')
-   stat = ImageStat.Stat(im)
+   stat = PIL.ImageStat.Stat(im)
    return stat.mean[0]
 
 #   coordinates the data collection from the input image
