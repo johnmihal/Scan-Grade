@@ -85,7 +85,27 @@ def main():
 
 class ScanGrade(App):
     def build(self):
+        self.window = GridLayout()
+        self.window.cols = 1
+
+        self.window.add_widget(Image(source="Images/gridTest1.png"))
+        keyViewButton = Button(text='Load Key')
+#        keyViewButton.bind(on_press=self.keyView)
+
+        gradeViewButton = Button(text='Grade')
+ #       gradeViewButton.bind(on_press=self.keyView)
+
+        self.window.add_widget(gradeViewButton)
+        self.window.add_widget(keyViewButton)
+
+
         return self.window
+
+ #   def keyView(self):
+
+  #  def gradeView(self):
+
 
 if __name__ == "__main__":
     main()
+    ScanGrade().run()
