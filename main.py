@@ -1,12 +1,13 @@
 import PIL
 import os
 from kivy.app import App
+from kivy.uix.widget import Widget
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
-
+from kivy.uix.boxlayout import BoxLayout
 
 # crops answer bullets
 def imgcrop(input, xPieces, yPieces):
@@ -83,28 +84,13 @@ def main():
     print(input)
     grade(key, input, col, row)
 
+
+class ScanGradeUI(Widget):
+    pass
+
 class ScanGrade(App):
     def build(self):
-        self.window = GridLayout()
-        self.window.cols = 1
-
-        self.window.add_widget(Image(source="Images/gridTest1.png"))
-        keyViewButton = Button(text='Load Key')
-#        keyViewButton.bind(on_press=self.keyView)
-
-        gradeViewButton = Button(text='Grade')
- #       gradeViewButton.bind(on_press=self.keyView)
-
-        self.window.add_widget(gradeViewButton)
-        self.window.add_widget(keyViewButton)
-
-
-        return self.window
-
- #   def keyView(self):
-
-  #  def gradeView(self):
-
+        return ScanGradeUI()
 
 if __name__ == "__main__":
     main()
